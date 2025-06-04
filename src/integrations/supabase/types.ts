@@ -9,16 +9,316 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      loans: {
+        Row: {
+          amount: number
+          approval_date: string | null
+          created_at: string | null
+          disbursement_date: string | null
+          guarantor1: string | null
+          guarantor2: string | null
+          id: string
+          interest_rate: number | null
+          loan_code: string
+          loan_type: Database["public"]["Enums"]["loan_type"]
+          member_id: string | null
+          monthly_payment: number | null
+          purpose: string | null
+          request_date: string | null
+          status: Database["public"]["Enums"]["loan_status"] | null
+          term_months: number
+          updated_at: string | null
+        }
+        Insert: {
+          amount: number
+          approval_date?: string | null
+          created_at?: string | null
+          disbursement_date?: string | null
+          guarantor1?: string | null
+          guarantor2?: string | null
+          id?: string
+          interest_rate?: number | null
+          loan_code: string
+          loan_type: Database["public"]["Enums"]["loan_type"]
+          member_id?: string | null
+          monthly_payment?: number | null
+          purpose?: string | null
+          request_date?: string | null
+          status?: Database["public"]["Enums"]["loan_status"] | null
+          term_months: number
+          updated_at?: string | null
+        }
+        Update: {
+          amount?: number
+          approval_date?: string | null
+          created_at?: string | null
+          disbursement_date?: string | null
+          guarantor1?: string | null
+          guarantor2?: string | null
+          id?: string
+          interest_rate?: number | null
+          loan_code?: string
+          loan_type?: Database["public"]["Enums"]["loan_type"]
+          member_id?: string | null
+          monthly_payment?: number | null
+          purpose?: string | null
+          request_date?: string | null
+          status?: Database["public"]["Enums"]["loan_status"] | null
+          term_months?: number
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "loans_member_id_fkey"
+            columns: ["member_id"]
+            isOneToOne: false
+            referencedRelation: "members"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      members: {
+        Row: {
+          address: string | null
+          birth_date: string | null
+          city: string | null
+          country: string | null
+          created_at: string | null
+          email: string | null
+          first_name: string
+          id: string
+          identification: string
+          join_date: string | null
+          last_name: string
+          member_code: string
+          organization_id: string | null
+          phone: string | null
+          state: string | null
+          status: Database["public"]["Enums"]["member_status"] | null
+          updated_at: string | null
+        }
+        Insert: {
+          address?: string | null
+          birth_date?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string | null
+          email?: string | null
+          first_name: string
+          id?: string
+          identification: string
+          join_date?: string | null
+          last_name: string
+          member_code: string
+          organization_id?: string | null
+          phone?: string | null
+          state?: string | null
+          status?: Database["public"]["Enums"]["member_status"] | null
+          updated_at?: string | null
+        }
+        Update: {
+          address?: string | null
+          birth_date?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string | null
+          email?: string | null
+          first_name?: string
+          id?: string
+          identification?: string
+          join_date?: string | null
+          last_name?: string
+          member_code?: string
+          organization_id?: string | null
+          phone?: string | null
+          state?: string | null
+          status?: Database["public"]["Enums"]["member_status"] | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "members_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      organizations: {
+        Row: {
+          address: string | null
+          created_at: string | null
+          description: string | null
+          email: string | null
+          id: string
+          name: string
+          phone: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          address?: string | null
+          created_at?: string | null
+          description?: string | null
+          email?: string | null
+          id?: string
+          name: string
+          phone?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          address?: string | null
+          created_at?: string | null
+          description?: string | null
+          email?: string | null
+          id?: string
+          name?: string
+          phone?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      savings_accounts: {
+        Row: {
+          account_number: string
+          balance: number | null
+          created_at: string | null
+          end_date: string | null
+          id: string
+          is_active: boolean | null
+          member_id: string | null
+          monthly_contribution: number | null
+          savings_type: Database["public"]["Enums"]["savings_type"]
+          start_date: string | null
+          target_amount: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          account_number: string
+          balance?: number | null
+          created_at?: string | null
+          end_date?: string | null
+          id?: string
+          is_active?: boolean | null
+          member_id?: string | null
+          monthly_contribution?: number | null
+          savings_type: Database["public"]["Enums"]["savings_type"]
+          start_date?: string | null
+          target_amount?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          account_number?: string
+          balance?: number | null
+          created_at?: string | null
+          end_date?: string | null
+          id?: string
+          is_active?: boolean | null
+          member_id?: string | null
+          monthly_contribution?: number | null
+          savings_type?: Database["public"]["Enums"]["savings_type"]
+          start_date?: string | null
+          target_amount?: number | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "savings_accounts_member_id_fkey"
+            columns: ["member_id"]
+            isOneToOne: false
+            referencedRelation: "members"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      transactions: {
+        Row: {
+          amount: number
+          created_at: string | null
+          description: string | null
+          id: string
+          loan_id: string | null
+          member_id: string | null
+          savings_account_id: string | null
+          transaction_date: string | null
+          transaction_type: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          loan_id?: string | null
+          member_id?: string | null
+          savings_account_id?: string | null
+          transaction_date?: string | null
+          transaction_type: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          loan_id?: string | null
+          member_id?: string | null
+          savings_account_id?: string | null
+          transaction_date?: string | null
+          transaction_type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "transactions_loan_id_fkey"
+            columns: ["loan_id"]
+            isOneToOne: false
+            referencedRelation: "loans"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "transactions_member_id_fkey"
+            columns: ["member_id"]
+            isOneToOne: false
+            referencedRelation: "members"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "transactions_savings_account_id_fkey"
+            columns: ["savings_account_id"]
+            isOneToOne: false
+            referencedRelation: "savings_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      calculate_monthly_payment: {
+        Args: { principal: number; annual_rate: number; months: number }
+        Returns: number
+      }
     }
     Enums: {
-      [_ in never]: never
+      loan_status:
+        | "Pendiente"
+        | "En Revisión"
+        | "Aprobado"
+        | "Rechazado"
+        | "Activo"
+        | "Completado"
+      loan_type:
+        | "Préstamo Personal"
+        | "Préstamo Comercial"
+        | "Préstamo Vivienda"
+        | "Préstamo Educativo"
+        | "Préstamo Emergencia"
+      member_status: "Activo" | "Inactivo" | "Suspendido"
+      savings_type:
+        | "Ahorro Regular"
+        | "Ahorro Programado"
+        | "Ahorro Navideño"
+        | "Ahorro Vacacional"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -133,6 +433,29 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      loan_status: [
+        "Pendiente",
+        "En Revisión",
+        "Aprobado",
+        "Rechazado",
+        "Activo",
+        "Completado",
+      ],
+      loan_type: [
+        "Préstamo Personal",
+        "Préstamo Comercial",
+        "Préstamo Vivienda",
+        "Préstamo Educativo",
+        "Préstamo Emergencia",
+      ],
+      member_status: ["Activo", "Inactivo", "Suspendido"],
+      savings_type: [
+        "Ahorro Regular",
+        "Ahorro Programado",
+        "Ahorro Navideño",
+        "Ahorro Vacacional",
+      ],
+    },
   },
 } as const
