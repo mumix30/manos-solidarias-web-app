@@ -1,0 +1,39 @@
+@model ManosSolidarias.Mvc.Entities.Organizacion
+@{
+    ViewData["Title"] = "Crear organización";
+}
+
+<section class="page">
+    <h1>Crear organización</h1>
+    <form asp-action="Create" method="post" class="form">
+        <label>
+            Organización
+            <input asp-for="Organizacion" />
+        </label>
+        <label>
+            Dirección
+            <input asp-for="Direccion" />
+        </label>
+        <label>
+            Teléfono
+            <input asp-for="Telefono" />
+        </label>
+        <label>
+            Celular
+            <input asp-for="Celular" />
+        </label>
+        <label>
+            Email
+            <input asp-for="Email" type="email" />
+        </label>
+        <label>
+            Formal (0/1)
+            <input asp-for="Formal" type="number" />
+        </label>
+        <label>
+            Estatus
+            <input asp-for="Estatus" type="number" />
+        </label>
+        <button class="button" type="submit">Guardar</button>
+    </form>
+</section>

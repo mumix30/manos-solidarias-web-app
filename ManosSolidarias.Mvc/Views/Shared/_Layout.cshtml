@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Manos Solidarias</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header class="site-header">
+        <nav class="site-nav">
+            <a asp-controller="Home" asp-action="Index">Inicio</a>
+            <a asp-controller="Roles" asp-action="Index">Roles</a>
+            <a asp-controller="Organizaciones" asp-action="Index">Organizaciones</a>
+        </nav>
+    </header>
+    <main class="site-main">
+        @RenderBody()
+    </main>
+</body>
+</html>
