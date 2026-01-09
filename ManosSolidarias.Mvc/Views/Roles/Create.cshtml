@@ -1,0 +1,19 @@
+@model ManosSolidarias.Mvc.Entities.Role
+@{
+    ViewData["Title"] = "Crear rol";
+}
+
+<section class="page">
+    <h1>Crear rol</h1>
+    <form asp-action="Create" method="post" class="form">
+        <label>
+            Rol
+            <input asp-for="Rol" />
+        </label>
+        <label>
+            Estatus
+            <input asp-for="Estatus" type="number" />
+        </label>
+        <button class="button" type="submit">Guardar</button>
+    </form>
+</section>
